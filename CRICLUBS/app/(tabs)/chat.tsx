@@ -1,9 +1,9 @@
 import { Text, View } from "@gluestack-ui/themed";
 
-export default function HomeScreen() {
+export default function ChatScreen() {
   return (
     <View>
-      <Text>Home Screen</Text>
+      <Text>Chat Screen</Text>
     </View>
   );
 }

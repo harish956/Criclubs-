@@ -1,6 +1,5 @@
-import React from "react";
 import { Drawer } from "expo-router/drawer";
-import TabLayout from "./(tabs)/_layout";
+import React from "react";
 
 export default function DrawerLayout() {
   return (

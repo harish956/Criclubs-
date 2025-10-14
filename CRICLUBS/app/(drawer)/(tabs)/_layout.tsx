@@ -63,7 +63,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="MyGamesScreen"
+        name="(MyGames)"
         options={{
           title: "My Games",
           tabBarLabel: "My Games",

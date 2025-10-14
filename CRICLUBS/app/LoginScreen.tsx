@@ -1,26 +1,30 @@
-import React, { useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { router } from "expo-router";
+import { useAppDispatch } from "@/src/store/hooks";
+import { login } from "@/src/store/slices/authSlice";
 import {
   Box,
-  Button,
   Center,
+  EyeIcon,
+  EyeOffIcon,
   FormControl,
   FormControlError,
   FormControlErrorText,
   FormControlLabel,
   FormControlLabelText,
+  Icon,
   Image,
   Input,
   InputField,
   InputIcon,
   InputSlot,
+  Pressable,
   Text,
   VStack,
 } from "@gluestack-ui/themed";
-import { Pressable } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useState } from "react";
 
 export default function LoginScreen() {
+  const dispatch = useAppDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -56,6 +60,7 @@ export default function LoginScreen() {
     if (validate()) {
       try {
         await AsyncStorage.setItem("@isLoggedIn", "true");
+        dispatch(login());
       } catch (e) {
         console.log("Error storing login state", e);
       }
@@ -73,25 +78,32 @@ export default function LoginScreen() {
     >
       <Center style={{ marginTop: 40 }}>
         <Image
-          source={require("../assets/images/icon.png")}
+          source={require("../assets/images/logo.png")}
           alt="CricClubs Logo"
-          style={{ height: 2, width: 2 }}
+          h={146.6}
+          w={300}
         />
       </Center>
 
       <VStack style={{ marginTop: 40, gap: 16 }}>
-        <Text style={{ fontSize: 24, fontWeight: "bold" }}>Welcome Back !</Text>
+        <Text fontSize={24} fontFamily="Inter_700Bold">
+          Welcome Back !
+        </Text>
 
         <FormControl isInvalid={!!errors.email}>
           <FormControlLabel>
             <FormControlLabelText
-              style={{ color: "#2563EB", fontWeight: "600" }}
+              fontSize={12}
+              style={{ color: "#286DAD", fontWeight: "600" }}
+              fontFamily="Poppins_600SemiBold"
             >
               Email Address
             </FormControlLabelText>
           </FormControlLabel>
-          <Input variant="outline" style={{ borderRadius: 999 }}>
+          <Input h={48} variant="outline" borderRadius={32}>
             <InputField
+              fontFamily="Poppins_400Regular"
+              fontSize={14}
               placeholder="Enter your email"
               value={email}
               onChangeText={(text) => {
@@ -110,13 +122,17 @@ export default function LoginScreen() {
         <FormControl isInvalid={!!errors.password}>
           <FormControlLabel>
             <FormControlLabelText
-              style={{ color: "#2563EB", fontWeight: "600" }}
+              fontSize={12}
+              style={{ color: "#286DAD", fontWeight: "600" }}
+              fontFamily="Poppins_600SemiBold"
             >
               Password
             </FormControlLabelText>
           </FormControlLabel>
-          <Input variant="outline" style={{ borderRadius: 999 }}>
+          <Input h={48} variant="outline" borderRadius={32}>
             <InputField
+              fontFamily="Poppins_400Regular"
+              fontSize={14}
               placeholder="Enter your password"
               type={showPassword ? "text" : "password"}
               value={password}
@@ -126,11 +142,18 @@ export default function LoginScreen() {
                   setErrors({ ...errors, password: undefined });
               }}
             />
-            {/* <InputSlot style={{ paddingRight: 12 }}>
+            <InputSlot style={{ paddingRight: 12 }}>
               <Pressable onPress={() => setShowPassword(!showPassword)}>
-                <InputIcon as={showPassword ? EyeOffIcon : EyeIcon} />
+                <InputIcon
+                  as={() => (
+                    <Icon
+                      as={showPassword ? EyeIcon : EyeOffIcon}
+                      className="text-typography-500 m-2 w-4 h-4"
+                    />
+                  )}
+                />
               </Pressable>
-            </InputSlot> */}
+            </InputSlot>
           </Input>
           {errors.password && (
             <FormControlError>
@@ -138,47 +161,56 @@ export default function LoginScreen() {
             </FormControlError>
           )}
           <Pressable style={{ alignSelf: "flex-end", marginTop: 4 }}>
-            <Text style={{ color: "#EF4444", fontSize: 14 }}>
-              Forgot Password?
-            </Text>
+            {({ pressed }) => (
+              <Text
+                style={{ color: "#EF4444" }}
+                fontSize={12}
+                fontFamily="Poppins_500Medium"
+                transform={[{ scale: pressed ? 0.95 : 1 }]}
+              >
+                Forgot Password?
+              </Text>
+            )}
           </Pressable>
         </FormControl>
+        <Pressable onPress={handleLogin}>
+          {({ pressed }) => (
+            <Box
+              transform={[{ scale: pressed ? 0.95 : 1 }]}
+              mt={16}
+              bg="#286DAD"
+              px={16}
+              py={12}
+              borderRadius={8}
+            >
+              <Text color="#FFFFFF" fontWeight="bold" textAlign="center">
+                Login
+              </Text>
+            </Box>
+          )}
+        </Pressable>
 
-        {/* Login Button */}
-        <Button
-          style={{
-            marginTop: 16,
-            backgroundColor: "#2563EB",
-            paddingVertical: 12,
-          }}
-          onPress={handleLogin}
-        >
-          <Text
-            style={{
-              color: "#FFFFFF",
-              fontWeight: "bold",
-              textAlign: "center",
-            }}
-          >
-            Login
-          </Text>
-        </Button>
-
-        {/* Terms */}
         <Text
           style={{
             textAlign: "center",
             marginTop: 8,
-            fontSize: 12,
             color: "#6B7280",
           }}
+          fontSize={12}
         >
           By continuing, you agree to CricClubs{" "}
-          <Text style={{ color: "#2563EB", textDecorationLine: "underline" }}>
+          <Text
+            style={{ color: "#286DAD", textDecorationLine: "underline" }}
+            fontFamily="Inter_600Semibold"
+            fontSize={12}
+          >
             Terms of Service
           </Text>{" "}
           and{" "}
-          <Text style={{ color: "#2563EB", textDecorationLine: "underline" }}>
+          <Text
+            style={{ color: "#286DAD", textDecorationLine: "underline" }}
+            fontSize={12}
+          >
             Privacy Policy
           </Text>
         </Text>

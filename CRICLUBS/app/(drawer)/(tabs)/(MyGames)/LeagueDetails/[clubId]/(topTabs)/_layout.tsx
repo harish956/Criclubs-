@@ -4,17 +4,9 @@ import MatchScreen from "./MatchScreen";
 export default function LeagueTabsLayout() {
   const Tab = createMaterialTopTabNavigator();
   return (
-    <Tab.Navigator
-      screenOptions={{
-        tabBarContentContainerStyle: null,
-      }}
-    >
-      <Tab.Screen
-        name="HomeScreen"
-        component={DetailsHomeScreen}
-        options={{}}
-      />
-      <Tab.Screen name="MatchScreen" component={MatchScreen} />
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={DetailsHomeScreen} />
+      <Tab.Screen name="Match" component={MatchScreen} />
     </Tab.Navigator>
   );
 }

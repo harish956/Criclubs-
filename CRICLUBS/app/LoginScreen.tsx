@@ -22,7 +22,9 @@ import {
 } from "@gluestack-ui/themed";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useState } from "react";
-
+import { Linking } from "react-native";
+export const TERMS_AND_CONDITIONS = "https://cricclubs.com/terms.do";
+export const PRIVACY_POLICY_URL = "https://cricclubs.com/privacy.do";
 export default function LoginScreen() {
   const dispatch = useAppDispatch();
   const [email, setEmail] = useState("");
@@ -203,6 +205,9 @@ export default function LoginScreen() {
             style={{ color: "#286DAD", textDecorationLine: "underline" }}
             fontFamily="Inter_600Semibold"
             fontSize={12}
+            onPress={() => {
+              Linking.openURL(TERMS_AND_CONDITIONS);
+            }}
           >
             Terms of Service
           </Text>{" "}
@@ -210,6 +215,9 @@ export default function LoginScreen() {
           <Text
             style={{ color: "#286DAD", textDecorationLine: "underline" }}
             fontSize={12}
+            onPress={() => {
+              Linking.openURL(PRIVACY_POLICY_URL);
+            }}
           >
             Privacy Policy
           </Text>

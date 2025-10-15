@@ -5,10 +5,10 @@ export interface League {
   clubName: string;
   logo_file_path: string;
   location: string;
-  status: string;
+  status: string | null;
   role: string;
-  isAcademy: string;
-  allowPlayerCustomId: string;
+  isAcademy: number;
+  allowPlayerCustomId: number;
   sport: string;
 }
 

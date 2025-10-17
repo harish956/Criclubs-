@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { useAppDispatch, useAppSelector } from "@/src/store/hooks";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Stack } from "expo-router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ActivityIndicator } from "react-native";
 import { login } from "@/src/store/slices/authSlice";
 import {

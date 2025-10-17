@@ -15,7 +15,6 @@ export default function DetailsHomeScreen() {
   console.log(clubId);
   return (
     <ScrollView px={13}>
-      <Text>Hi {clubId} This is Matches Screen</Text>
       <MatchBox />
       <Text fontFamily="Inter_600SemiBold" fontSize={15} color="#000000">
         Sponsors

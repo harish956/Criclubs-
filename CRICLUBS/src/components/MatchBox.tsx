@@ -8,6 +8,7 @@ export default function MatchBox() {
       borderRadius={15}
       px={13}
       py={10}
+      mt={10}
     >
       <Text color="#737474" fontFamily="Inter_500Medium" fontSize={11}>
         Current Series
@@ -18,7 +19,7 @@ export default function MatchBox() {
         color="#000000"
         mb={12}
       >
-        test Divisions dbdn
+        test Divisions
       </Text>
       <Divider bg="#DEDEDE" />
       <Text color="#737474" fontFamily="Inter_500Medium" fontSize={11} mt={12}>

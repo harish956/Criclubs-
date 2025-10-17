@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { League } from "../../interfaces/LeagueCard";
 
 interface InitialStateProps {
-  clubs?: League[];
+  clubs: League[];
 }
 
 const initialState: InitialStateProps = {
-  clubs: undefined,
+  clubs: [],
 };
 
 const clubSlice = createSlice({

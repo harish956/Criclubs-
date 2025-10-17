@@ -49,7 +49,7 @@ function AppInitializer() {
       }
     };
     checkLogin();
-  }, []);
+  }, [dispatch]);
 
   if (!fontsLoaded || isLoading) {
     return (
@@ -62,12 +62,11 @@ function AppInitializer() {
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Protected guard={isLoggedIn}>
-        {/* <Stack.Screen name="(tabs)" /> */}
         <Stack.Screen name="(drawer)" />
       </Stack.Protected>
 
       <Stack.Protected guard={!isLoggedIn}>
-        <Stack.Screen name="LoginScreen" />
+        <Stack.Screen name="(auth)/LoginScreen" />
       </Stack.Protected>
     </Stack>
   );

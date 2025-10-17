@@ -1,10 +1,9 @@
 import MatchCard from "@/src/components/MatchCard";
 import { MatchItem } from "@/src/interfaces/matchCard";
 import { matchList } from "@/src/utils/data/matchesList";
-import { FlatList, ScrollView } from "@gluestack-ui/themed";
 import { useLocalSearchParams } from "expo-router";
+import { FlatList } from "react-native";
 import { useCallback } from "react";
-
 export default function MatchScreen() {
   const { clubId } = useLocalSearchParams();
 
@@ -15,12 +14,10 @@ export default function MatchScreen() {
   }, []);
 
   return (
-    <ScrollView p={13}>
-      <FlatList
-        data={matchList}
-        renderItem={renderItem}
-        keyExtractor={(item: MatchItem) => item.matchId}
-      />
-    </ScrollView>
+    <FlatList
+      data={matchList as MatchItem[]}
+      renderItem={renderItem}
+      keyExtractor={(item: MatchItem) => item.matchId.toString()}
+    />
   );
 }

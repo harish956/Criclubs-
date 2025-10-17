@@ -1,23 +1,24 @@
 import { LeagueCard } from "@/src/components/LeagueCard";
 import { League } from "@/src/interfaces/LeagueCard";
+import { useAppSelector } from "@/src/store/hooks";
 import { setClubList } from "@/src/store/slices/clubSlice";
 import { clubsList } from "@/src/utils/data/clubsList";
-import { FlatList, Text, View } from "@gluestack-ui/themed";
+import { Text, View } from "@gluestack-ui/themed";
 import { useCallback, useEffect, useState } from "react";
-import { ActivityIndicator } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { ActivityIndicator, FlatList } from "react-native";
+import { useDispatch } from "react-redux";
 
 const MyGames = () => {
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(true);
-  const clubsData = useSelector((state) => state.club.clubs);
+  const clubsData = useAppSelector((state) => state.club.clubs);
 
   useEffect(() => {
     setTimeout(() => {
       dispatch(setClubList(clubsList));
       setLoading(false);
-    }, 2000);
-  }, []);
+    }, 1000);
+  }, [dispatch]);
 
   const renderItem = useCallback(
     ({ item, index }: { item: League; index: number }) => {
@@ -38,13 +39,13 @@ const MyGames = () => {
   return clubsData?.length > 0 ? (
     <View flex={1}>
       <FlatList
-        data={clubsList}
+        data={clubsData as League[]}
         renderItem={renderItem}
-        keyExtractor={(item: propsType) => item.clubId}
+        keyExtractor={(item: League) => item.clubId.toString()}
       />
     </View>
   ) : (
-    <Text>Not Data</Text>
+    <Text>Data is Not Available</Text>
   );
 };
 

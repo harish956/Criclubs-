@@ -80,7 +80,7 @@ export default function LoginScreen() {
     >
       <Center style={{ marginTop: 40 }}>
         <Image
-          source={require("../assets/images/logo.png")}
+          source={require("../../assets/images/logo.png")}
           alt="CricClubs Logo"
           h={146.6}
           w={300}

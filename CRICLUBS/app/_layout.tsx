@@ -21,7 +21,7 @@ import {
 } from "@expo-google-fonts/poppins";
 import { config } from "@gluestack-ui/config";
 import { GluestackUIProvider, View } from "@gluestack-ui/themed";
-import { setupFCM } from "@/src/services/fcm";
+
 
 function AppInitializer() {
   const dispatch = useAppDispatch();
@@ -44,7 +44,6 @@ function AppInitializer() {
         const value = await AsyncStorage.getItem("@isLoggedIn");
         if (value === "true") 
           dispatch(login())
-        setupFCM();
       } catch (e) {
         console.log(e);
       } finally {

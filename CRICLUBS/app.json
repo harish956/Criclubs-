@@ -20,7 +20,8 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.harish956.CRICLUBS"
+      "package": "com.harish956.CRICLUBS",
+      "googleServicesFile":"./google-services.json"
     },
     "web": {
       "output": "static",
@@ -49,8 +50,9 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "8ffa6953-4350-404d-8009-7617f020471a"
+        "projectId": "1869de5b-3aad-4e34-b5a9-74c359e30fe7"
       }
-    }
+    },
+    "owner": "criclubs"
   }
 }

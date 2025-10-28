@@ -21,6 +21,7 @@ import {
 } from "@expo-google-fonts/poppins";
 import { config } from "@gluestack-ui/config";
 import { GluestackUIProvider, View } from "@gluestack-ui/themed";
+import { addNotificationListeners, registerForPushNotificationsAsync } from "@/src/utils/notificationSetup";
 
 
 function AppInitializer() {
@@ -52,6 +53,12 @@ function AppInitializer() {
     };
   useEffect(() => {
     checkLogin();
+     registerForPushNotificationsAsync();
+    const removeListeners = addNotificationListeners(
+      (notif) => console.log('Foreground Notification:', notif),
+      (response) => console.log(' User tapped Notification:', response)
+    );
+    return () => removeListeners();
   }, [dispatch]);
 
   if (!fontsLoaded || isLoading) {
